@@ -32,5 +32,12 @@ func hello(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", hello)
-	http.ListenAndServe(":8000", nil)
+
+	port := os.Getenv("PORT")
+	if len(port) == 0 {
+		port = "8000"
+
+	}
+
+	http.ListenAndServe(":"+port, nil)
 }
